@@ -2,6 +2,7 @@ import { createContext, useReducer, useEffect } from 'react';
 import { TasksReducer } from '../reducers/reducers';
 import * as api from '../services/api';
 import * as actions from '../reducers/action-creators';
+import { useTasks } from '../hooks/use-tasks';
 
 // Instanciar el objeto Context usando el factory createContex
 // Definimos el "interface" del subtipo
@@ -77,8 +78,8 @@ export function ContextProvider({ children }) {
         });
     };
 
-    const title = 'TODO List with Flux & Context';
-
+    let title = 'TODO List with Flux & Context';
+    title += useTasks();
     // eslint-disable-next-line react/jsx-no-constructed-context-values
     const contextValue = {
         title,
